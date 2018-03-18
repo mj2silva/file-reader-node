@@ -19,7 +19,7 @@ router.get('/success', function (req, res, next) {
 
 router.post('/', [multer.single('attachment')], function (req, res, next) {
   var {fileName} = storeWithOriginalName(req.file)
-  var encoded = encodeURIComponent(fileName);
+  var encoded = encodeURIComponent(fileName)
   res.redirect(`/upload/success?fileName=${encoded}`)
 })
 
