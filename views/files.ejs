@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='stylesheet' href='/stylesheets/style.css' />  
+  <title>Existing Files</title>
+</head>
+<body>
+  <h1>Files in alphabetic order:</h1>
+  <ul>
+    <% if (files.length === 0) { %>
+      <li><em>No files found</em></li>       
+    <% } else { %>   
+      <% files.forEach(file => {  %>
+      <li><a href="/uploads/<%= file %>"><%= file %></a></li> 
+      <% }) %>
+    <% } %>
+  </ul>
+  <br/>
+  <br/>
+  <a href="/">Go Back</a>
+</body>
+</html>
