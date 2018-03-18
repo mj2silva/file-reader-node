@@ -1,6 +1,7 @@
 var express = require('express')
 var fs = require('fs')
 var path = require('path')
+var util = require('util')
 
 var multer = require('multer')({
   dest: 'public/uploads'
@@ -18,18 +19,22 @@ router.get('/success', function (req, res, next) {
 })
 
 router.post('/', [multer.single('attachment')], function (req, res, next) {
-  var {fileName} = storeWithOriginalName(req.file)
-  var encoded = encodeURIComponent(fileName)
-  res.redirect(`/upload/success?fileName=${encoded}`)
+  return storeWithOriginalName(req.file)
+    .then(encodeURIComponent)
+    .then(encoded => {
+      res.redirect(`/upload/success?fileName=${encoded}`)
+    })
+    .catch(next)
 })
 
 function storeWithOriginalName (file) {
   var fullNewPath = path.join(file.destination, file.originalname)
-  fs.renameSync(file.path, fullNewPath)
+  var rename = util.promisify(fs.rename)
 
-  return {
-    fileName: file.originalname
-  }
+  return rename(file.path, fullNewPath)
+    .then(() => {
+      return file.originalname
+    })
 }
 
 module.exports = router
