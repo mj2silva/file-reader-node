@@ -12,9 +12,15 @@ router.get('/', function (req, res, next) {
   res.render('uploadForm.ejs')
 })
 
+router.get('/success', function (req, res, next) {
+  var {fileName} = req.query
+  res.render('uploadOK.ejs', {fileName})
+})
+
 router.post('/', [multer.single('attachment')], function (req, res, next) {
   var {fileName} = storeWithOriginalName(req.file)
-  res.render('uploadOK.ejs', {fileName})
+  var encoded = encodeURIComponent(fileName);
+  res.redirect(`/upload/success?fileName=${encoded}`)
 })
 
 function storeWithOriginalName (file) {
