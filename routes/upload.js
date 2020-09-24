@@ -25,7 +25,7 @@ router.post('/', [multer.single('attachment')], async function (req, res, next) 
   try {
     const uriComponent = await storeWithOriginalName(req.file)
     const encoded = encodeURIComponent(uriComponent)
-    console.log({ endoded, file: req.file });
+    console.log({ encoded, file: req.file });
     res.render('uploadOK.ejs', { fileName: encoded, fileData: req.file })
   } catch (error) {
     return next(error)
