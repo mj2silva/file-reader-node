@@ -18,7 +18,7 @@ router.get('/success', async function (req, res, next) {
   const { file } = req.file;
   const filePath = path.join(__dirname, '../public/uploads', fileName)
   const file2 = fs.readFileSync(filePath);
-  res.render('uploadOK.ejs', { fileName, fileData: file2 })
+  res.render('uploadOk.ejs', { fileName, fileData: file2 })
 })
 
 router.post('/', [multer.single('attachment')], async function (req, res, next) {
@@ -26,7 +26,7 @@ router.post('/', [multer.single('attachment')], async function (req, res, next) 
     const uriComponent = await storeWithOriginalName(req.file)
     const encoded = encodeURIComponent(uriComponent)
     console.log({ encoded, file: req.file });
-    res.render('uploadOK.ejs', { fileName: encoded, fileData: req.file })
+    res.render('uploadOk.ejs', { fileName: encoded, fileData: req.file })
   } catch (error) {
     return next(error)
   }

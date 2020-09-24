@@ -1,13 +1,13 @@
-var express = require('express')
-var path = require('path')
-var logger = require('morgan')
-var bodyParser = require('body-parser')
+const express = require('express')
+const path = require('path')
+const logger = require('morgan')
+const bodyParser = require('body-parser')
 
-var index = require('./routes/index')
-var upload = require('./routes/upload')
-var files = require('./routes/files')
+const index = require('./routes/index')
+const upload = require('./routes/upload')
+const files = require('./routes/files')
 
-var app = express()
+const app = express()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -24,7 +24,7 @@ app.use('/files', files)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('Not Found')
+  const err = new Error('Not Found')
   err.status = 404
   next(err)
 })
