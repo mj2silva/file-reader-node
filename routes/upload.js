@@ -1,40 +1,43 @@
-var express = require('express')
-var fs = require('fs')
-var path = require('path')
-var util = require('util')
+const express = require('express')
+const fs = require('fs')
+const path = require('path')
+const util = require('util')
 
-var multer = require('multer')({
+const multer = require('multer')({
   dest: 'public/uploads'
 })
 
-var router = express.Router()
+const router = express.Router()
 
 router.get('/', function (req, res, next) {
   res.render('uploadForm.ejs')
 })
 
-router.get('/success', function (req, res, next) {
-  var {fileName} = req.query
-  res.render('uploadOK.ejs', {fileName})
+router.get('/success', async function (req, res, next) {
+  const { fileName } = req.query;
+  const { file } = req.file;
+  const filePath = path.join(__dirname, '../public/uploads', fileName)
+  const file2 = fs.readFileSync(filePath);
+  console.log(file);
+  res.render('uploadOK.ejs', { fileName, fileData: file2 })
 })
 
-router.post('/', [multer.single('attachment')], function (req, res, next) {
-  return storeWithOriginalName(req.file)
-    .then(encodeURIComponent)
-    .then(encoded => {
-      res.redirect(`/upload/success?fileName=${encoded}`)
-    })
-    .catch(next)
+router.post('/', [multer.single('attachment')], async function (req, res, next) {
+  try {
+    const uriComponent = await storeWithOriginalName(req.file)
+    const encoded = encodeURIComponent(uriComponent)
+    res.render('uploadOK.ejs', { fileName: encoded, fileData: req.file })
+  } catch (error) {
+    return next(error)
+  }
 })
 
-function storeWithOriginalName (file) {
-  var fullNewPath = path.join(file.destination, file.originalname)
-  var rename = util.promisify(fs.rename)
+async function storeWithOriginalName (file) {
+  const fullNewPath = path.join(file.destination, file.originalname)
+  const rename = util.promisify(fs.rename)
 
-  return rename(file.path, fullNewPath)
-    .then(() => {
-      return file.originalname
-    })
+  await rename(file.path, fullNewPath)
+  return file.originalname
 }
 
 module.exports = router
