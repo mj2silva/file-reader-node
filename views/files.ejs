@@ -8,16 +8,18 @@
     <title>Lista de archivos subidos</title>
   </head>
   <body>
-    <h1>Archivos en orden alfabético:</h1>
-    <ul>
-      <% if (files.length === 0) { %>
-      <li><em>No hay archivos subidos</em></li>
-      <% } else { %> <% files.forEach(file => { %>
-      <li><a href="/uploads/<%= file %>"><%= file %></a></li>
-      <% }) %> <% } %>
-    </ul>
-    <br />
-    <br />
-    <a href="/">Regresar</a>
+    <div class="app">
+      <h1>Archivos en orden alfabético:</h1>
+      <ul>
+        <% if (files.length === 0) { %>
+        <li><em>No hay archivos subidos</em></li>
+        <% } else { %> <% files.forEach(file => { %>
+        <li><a href="/uploads/<%= file %>"><%= file %></a></li>
+        <% }) %> <% } %>
+      </ul>
+      <br />
+      <br />
+      <a href="/">Regresar</a>
+    </div>
   </body>
 </html>

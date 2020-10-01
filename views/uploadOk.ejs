@@ -8,25 +8,58 @@
     <title>File received OK</title>
   </head>
   <body>
-    <h1>Correcto!</h1>
-    <p>
-      El archivo
-      <a href="/uploads/<%=fileName%>" target="_blank"><%=fileName%></a> fue
-      subido correctamente!
-    </p>
-    <p>
-      Datos del archivo: </br>
+    <div class="fileDescriptor-container">
+      <h1>Descriptor de archivos</h1>
+      <p>
+        El archivo
+        <a href="/uploads/<%=fileName%>" target="_blank"><%=fileName%></a> fue
+        subido correctamente!
+      </p>
+      <p>Datos del archivo:</p>
       <% if (fileData) { %>
-        Nombre original: <%= fileData.originalname %> </br>
-        Codificación: <%= fileData.encoding %> </br>
-        Tipo MIME: <%= fileData.mimetype %> </br>
-        Nombre actual: <%= fileData.filename %> </br>
-        Ruta: <%= fileData.path %> </br>
-        Tamaño: <%= fileData.size %> bytes</br>
+        <div class="fileDescriptor__table-container">
+          <table>
+            <tr>
+              <th>Nombre original</th>
+              <td>
+                <%= fileData.originalname %>
+              </td>
+            </tr>
+            <tr>
+              <th>Codificación</th>
+              <td>
+                <%= fileData.encoding %>
+              </td>
+            </tr>
+            <tr>
+              <th>Tipo</th>
+              <td>
+                MIME: <%= fileData.mimetype %>
+              </td>
+            </tr>
+            <tr>
+              <th>Nombre actual</th>
+              <td>
+                <%= fileData.filename %>
+              </td>
+            </tr>
+            <tr>
+              <th>Ruta</th>
+              <td>
+                <%= fileData.path %>
+              </td>
+            </tr>
+            <tr>
+              <th>Tamaño</th>
+              <td>
+                <%= fileData.size %> bytes
+              </td>
+            </tr>
+          </table>
+        </div>
       <% } %>
-    </p>
-    <br />
-    <br />
-    <a href="/upload">Regresar</a>
+      <a href="/upload">Regresar</a>
+      </div>
+    
   </body>
 </html>

@@ -1,8 +1,119 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+h1{
+  color: darkslategray;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  /* color: #00B7FF; */
+  color: darkslategray;
+  margin: 32px 0;
+  font-weight: bold;
+}
+
+.uploadForm__form{
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.uploadForm__form-container{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  cursor: pointer;
+  width: fit-content;
+  padding: 8px 32px;
+  border-style: solid;
+  background-color: darkslategray;
+  color: #f0f0f0;
+  border: none;
+  outline: none;
+}
+
+button:hover{
+  background-color:darkslategrey;
+  box-shadow: 2px 2px 2px gray;
+}
+
+.fileDescriptor-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.fileDescriptor__dataName {
+    border: 1px solid black;
+  }
+
+table{
+
+  border-collapse: collapse;
+}
+
+tr{
+  border: 1px solid #CCCCCC;
+  
+}
+
+th, td {
+  border: 1px solid #708090;
+  border-collapse: collapse;
+  padding: 8px 16px;
+}
+
+th{
+  text-align: left;
+  color: darkslategray;
+}
+
+.app{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+input {
+  /* background-color: lightslategray; */
+  display: flex;
+  border: 1px solid darkslategray;
+}
+
+input[type="file" i] {
+  color: darkslategray;
+  font-weight: bold;
+  margin: 0 32px;
+  padding-right: 16px;
+}
+
+input[type="file"]::-webkit-file-upload-button{
+  cursor: pointer;
+  width: fit-content;
+  padding: 8px 32px;
+  border-style: solid;
+  background-color: darkslategray;
+  color: #f0f0f0;
+  border: none;
+  outline: none;
+  align-self: flex-start;
+  margin-right: 16px;
 }

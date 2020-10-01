@@ -8,19 +8,19 @@
     <title>Formulario de carga</title>
   </head>
   <body>
-    <h1>Formulario de subida de archivos</h1>
-    <form
-      name="upload-form"
-      action="upload"
-      method="post"
-      enctype="multipart/form-data"
-    >
-      <input type="file" name="attachment" id="attachment" />
-      <button type="submit">Subir</button>
-    </form>
-
-    <br />
-    <br />
-    <a href="/">Regresar</a>
+    <div class="uploadForm__form-container">
+      <h1>Formulario de subida de archivos</h1>
+      <form 
+        class="uploadForm__form"
+        name="upload-form"
+        action="upload"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input class="inputfile" type="file" name="attachment" id="attachment" />
+        <button type="submit">Subir</button>
+      </form>
+      <a href="/">Regresar</a>
+    </div>
   </body>
 </html>
